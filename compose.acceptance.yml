@@ -1,0 +1,15 @@
+# Disposable, localhost-only acceptance overrides. NEVER use for production.
+services:
+  api:
+    environment:
+      PICPILOT_DEMO_MODE: "true"
+      PICPILOT_PUBLIC_URL: http://localhost:18087
+      PICPILOT_ALLOWED_ORIGINS: http://localhost:18087,http://localhost:18083
+    ports: ["127.0.0.1:18082:8080"]
+  user:
+    ports: !override []
+  gateway:
+    ports: !override
+      - "127.0.0.1:18087:8080"
+    environment:
+      PICPILOT_PUBLIC_URL: http://localhost:18087
