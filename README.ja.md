@@ -43,6 +43,36 @@ docker compose exec api /picpilot --setup-token
 
 本リポジトリには `core` の完全なソースを同梱しています。**プラットフォーム版のクローンや非公開モジュールの取得は不要です。** 公開ユーザー登録と管理者サイトは無効です。Next.js は画面表示と通信転送のみを担い、タスク、業務データ、モデル実行は Go が処理します。
 
+## コールドスタート検証
+
+新しい利用者に必要なのはこのリポジトリと Docker だけです。ホストへ Go、Node、PostgreSQL を別途インストールする必要はありません。
+
+```powershell
+./scripts/init.ps1                 # 初回のみ。`.env` とランダムな DB パスワードを作成
+docker compose up -d --build       # Go API、ユーザー画面、ゲートウェイを構築
+docker compose ps                   # db/api/user/gateway が running/healthy になるまで待つ
+docker compose exec api /picpilot --setup-token
+```
+
+初期化トークンは端末に一度だけ表示されます。`http://localhost:8080` を開き、トークンで個人アカウントを作成します。
+ホームまたはログイン画面が表示され、API の Compose ヘルスチェックが通れば起動完了です。Linux/macOS では最初のコマンドを
+`sh scripts/init.sh` に置き換えます。初回ビルド後の再起動は `docker compose start` だけで、再ビルドは不要です。
+
+空のデータベースを使った独立検証で、イメージ構築、マイグレーション、最初のアカウント、ログイン、個人 Provider の暗号化保存、
+Mock 画像/テキストタスク、冪等性、署名メディア、ログアウトを確認しました。以下はローカルブラウザー検証の画面であり、顧客データや有料モデルは含みません。
+
+![個人版モバイル画面](docs/screenshots/personal-home-mobile.png)
+
+![個人版モバイル自由キャンバス](docs/screenshots/personal-infinite-canvas-mobile.png)
+
+トラブルシューティング：
+
+- `POSTGRES_PASSWORD` がない場合は `init.ps1`/`init.sh` を実行します。本物の認証情報を `.env.example` に書かないでください。
+- Docker Engine が利用できない場合は Docker Desktop を起動し、`docker info` が Server 情報を返すことを確認します。
+- ポート競合時は `.env` の `PICPILOT_HTTP_PORT` と `PICPILOT_PUBLIC_URL` を一緒に変更します。
+- ページが開かない場合は `docker compose ps` と `docker compose logs --tail=100 api gateway` を確認し、先にボリュームを削除しないでください。
+- 通常停止は `docker compose stop`、再開は `docker compose start` です。`down -v` は DB とアプリデータを削除します。[運用手順](docs/operations.md) にバックアップ、復元、更新、ロールバックを記載しています。
+
 ## Provider とローカルゲートウェイ
 
 画像は OpenAI 画像 API と Gemini、テキストは OpenAI Chat Completions / Responses、動画は APIMart・HFSY・Agnes の設定済みアダプターに対応します。実際の API と互換性のあるプロトコルを選択してください。サービス名を変更するだけでは互換性は得られません。

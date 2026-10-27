@@ -43,6 +43,42 @@ There are no default accounts, passwords or paid credentials. The initializer ge
 
 The repository includes its complete `core` source snapshot. **No platform checkout or private module download is needed.** Public registration is disabled; the administrator website is not deployed. Next.js only renders pages and proxies transport. Go owns jobs, business data and provider execution.
 
+## Cold-start acceptance
+
+A new user needs only this repository and Docker; Go, Node and PostgreSQL do not need to be installed on the host:
+
+```powershell
+./scripts/init.ps1                 # first run only: writes .env and a random DB password
+docker compose up -d --build       # builds the Go API, user site and gateway
+docker compose ps                   # wait for db/api/user/gateway to be running/healthy
+docker compose exec api /picpilot --setup-token
+```
+
+The setup token is printed once. Open `http://localhost:8080` and use it to create your personal
+account. Startup is complete when the home/login page is visible and the API has passed its Compose
+health check. On Linux/macOS use `sh scripts/init.sh` for the first command. The first build downloads
+images and dependencies; later starts use `docker compose start` without rebuilding.
+
+The isolated empty-database acceptance run covered image builds, migrations, first account creation,
+login, encrypted personal provider storage, mock image/text jobs, idempotency, signed media and logout.
+These screenshots are local browser acceptance evidence; they contain no customer data and do not call
+a paid model.
+
+![Personal mobile home](docs/screenshots/personal-home-mobile.png)
+
+![Personal mobile infinite canvas](docs/screenshots/personal-infinite-canvas-mobile.png)
+
+Troubleshooting:
+
+- Missing `POSTGRES_PASSWORD`: run `init.ps1`/`init.sh`; never put real credentials in `.env.example`.
+- Docker Engine unavailable: start Docker Desktop and confirm `docker info` returns Server data.
+- Port conflict: change `PICPILOT_HTTP_PORT` and `PICPILOT_PUBLIC_URL` together in `.env`.
+- Page unavailable: inspect `docker compose ps` and `docker compose logs --tail=100 api gateway`; do not
+  delete volumes first.
+- Use `docker compose stop` for routine shutdown and `docker compose start` to resume. `down -v` deletes
+  the database and application data. See [operations](docs/operations.md) for backup, restore, upgrade
+  and rollback procedures, and [testing](docs/testing.md) for the safety boundary.
+
 ## Providers and Local Gateways
 
 Configured adapters cover OpenAI images and Gemini images; OpenAI Chat Completions / Responses for text; APIMart, HFSY and Agnes for video. Choose a protocol compatible with your actual upstream API. A provider's name alone does not establish compatibility.

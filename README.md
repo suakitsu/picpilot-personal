@@ -43,6 +43,38 @@ docker compose exec api /picpilot --setup-token
 
 本仓库包含完整的 `core` 源码快照，**无需克隆平台版或下载私有模块**。个人版不启动管理员站点，也不开放公众注册。Next.js 仅用于前端和传输代理；任务、业务数据和模型调用由 Go 服务处理。
 
+## 冷启动验收
+
+新用户只需要一个仓库和 Docker，不需要安装 Go、Node 或 PostgreSQL：
+
+```powershell
+./scripts/init.ps1                 # 只需首次执行，生成 .env 和随机数据库密码
+docker compose up -d --build       # 构建 Go API、用户站点和网关
+docker compose ps                   # 等待 db/api/user/gateway 为 running/healthy
+docker compose exec api /picpilot --setup-token
+```
+
+初始化令牌只在终端显示一次。打开 `http://localhost:8080`，使用令牌创建个人账号；看到首页或登录页，
+并且 API 通过 Compose 健康检查，就表示启动完成。Linux/macOS 使用 `sh scripts/init.sh` 替代第一行。
+首次构建需要下载镜像和依赖，速度取决于网络；后续启动使用 `docker compose start`，不需要重新构建。
+
+独立空数据库验收已覆盖：镜像构建、迁移、首次账号、登录、个人 Provider 加密保存、Mock 图片/文案任务、
+幂等、签名文件和退出登录。下图来自本地浏览器验收，不包含真实用户数据，也不会调用付费模型。
+
+![个人版移动首页](docs/screenshots/personal-home-mobile.png)
+
+![个人版自由画布移动端](docs/screenshots/personal-infinite-canvas-mobile.png)
+
+启动排查：
+
+- `POSTGRES_PASSWORD` 缺失：先运行 `init.ps1`/`init.sh`，不要把真实密钥写进 `.env.example`。
+- Docker Engine 不可用：启动 Docker Desktop，确认 `docker info` 返回 Server 信息。
+- 端口冲突：在 `.env` 修改 `PICPILOT_HTTP_PORT` 和 `PICPILOT_PUBLIC_URL`，保持两者一致。
+- 页面打不开：查看 `docker compose ps` 和 `docker compose logs --tail=100 api gateway`，不要先删卷。
+- 日常停机用 `docker compose stop`，恢复用 `docker compose start`；`down -v` 会删除数据库和应用数据。
+
+详细备份、恢复、升级和回滚步骤见 [运维文档](docs/operations.md)，测试边界见 [测试文档](docs/testing.md)。
+
 ## 模型与本机网关
 
 图片支持配置的 OpenAI 图片及 Gemini 适配器，文本支持 OpenAI Chat Completions / Responses，视频支持配置的 APIMart、HFSY、Agnes 适配器。必须选择与上游真实接口兼容的协议；任意厂商接口不能仅靠改名字通用。
