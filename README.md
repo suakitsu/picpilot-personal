@@ -61,9 +61,11 @@ docker compose exec api /picpilot --setup-token
 独立空数据库验收已覆盖：镜像构建、迁移、首次账号、登录、个人 Provider 加密保存、Mock 图片/文案任务、
 幂等、签名文件和退出登录。下图来自本地浏览器验收，不包含真实用户数据，也不会调用付费模型。
 
-![个人版移动首页](docs/screenshots/personal-home-mobile.png)
+以下是之前从完整桌面浏览器页面截取的 1440px 验收图，不是移动端视口或窄长裁剪图：
 
-![个人版自由画布移动端](docs/screenshots/personal-infinite-canvas-mobile.png)
+![个人版工作台](docs/screenshots/personal-workbench-desktop.png)
+
+![个人版模型配置](docs/screenshots/personal-providers-desktop.png)
 
 启动排查：
 

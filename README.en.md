@@ -64,9 +64,11 @@ login, encrypted personal provider storage, mock image/text jobs, idempotency, s
 These screenshots are local browser acceptance evidence; they contain no customer data and do not call
 a paid model.
 
-![Personal mobile home](docs/screenshots/personal-home-mobile.png)
+The following are previously captured 1440px desktop browser pages, not mobile viewports or narrow cropped images:
 
-![Personal mobile infinite canvas](docs/screenshots/personal-infinite-canvas-mobile.png)
+![Personal workbench](docs/screenshots/personal-workbench-desktop.png)
+
+![Personal provider settings](docs/screenshots/personal-providers-desktop.png)
 
 Troubleshooting:
 

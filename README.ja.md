@@ -61,9 +61,11 @@ docker compose exec api /picpilot --setup-token
 空のデータベースを使った独立検証で、イメージ構築、マイグレーション、最初のアカウント、ログイン、個人 Provider の暗号化保存、
 Mock 画像/テキストタスク、冪等性、署名メディア、ログアウトを確認しました。以下はローカルブラウザー検証の画面であり、顧客データや有料モデルは含みません。
 
-![個人版モバイル画面](docs/screenshots/personal-home-mobile.png)
+以下は以前に完全なデスクトップブラウザー画面から取得した 1440px の検証画像です。モバイル表示や細長い切り抜きではありません。
 
-![個人版モバイル自由キャンバス](docs/screenshots/personal-infinite-canvas-mobile.png)
+![個人版ワークベンチ](docs/screenshots/personal-workbench-desktop.png)
+
+![個人版 Provider 設定](docs/screenshots/personal-providers-desktop.png)
 
 トラブルシューティング：
 
