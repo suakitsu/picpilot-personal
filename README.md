@@ -96,6 +96,15 @@ docker compose logs --tail=100 api
 
 [配置与 HTTPS](docs/configuration.md) · [备份、恢复与升级](docs/operations.md) · [测试](docs/testing.md)
 
+## 鸣谢
+
+感谢以下开源项目提供画布能力。个人版保留其许可证、对应源码和来源说明，并在此基础上接入 PicPilot 的品牌、认证、任务桥接和个人存储：
+
+- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio)：创作工作台，嵌入版本 `3.1.3`，固定提交 `7768f3f8d7f47e04c6d18572837a086c7a533161`，许可证 AGPL-3.0。
+- [Infinite Canvas](https://github.com/basketikun/infinite-canvas)：自由画布，固定提交 `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`，许可证 GNU AGPL v3。
+
+许可证、来源和修改说明见 `third_party/nova-image-studio/UPSTREAM.md` 与 `third_party/infinite-canvas/PROVENANCE.txt`。
+
 ## 版本与许可
 
 需要运营多用户平台、充值或管理员后台时，使用独立的 `suakitsu/picpilot-platform-go`。原 Java 平台保持独立，不被本次迁移修改。

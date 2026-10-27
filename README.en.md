@@ -100,6 +100,20 @@ docker compose logs --tail=100 api
 
 [Configuration and HTTPS](docs/configuration.md) · [Backup, restore and upgrades](docs/operations.md) · [Tests](docs/testing.md)
 
+## Acknowledgements
+
+PicPilot thanks the following open-source projects for the canvas capabilities. The personal edition
+retains their licenses, corresponding source and provenance notes while adding PicPilot branding,
+authentication, task bridging and personal storage:
+
+- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio): creative studio,
+  version `3.1.3`, pinned commit `7768f3f8d7f47e04c6d18572837a086c7a533161`, AGPL-3.0.
+- [Infinite Canvas](https://github.com/basketikun/infinite-canvas): infinite canvas,
+  pinned commit `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`, GNU AGPL v3.
+
+License, provenance and modification notes are in
+`third_party/nova-image-studio/UPSTREAM.md` and `third_party/infinite-canvas/PROVENANCE.txt`.
+
 ## Editions and License
 
 For multi-user operations, payments and administration, use the separate `suakitsu/picpilot-platform-go` repository. The original Java platform remains independent and unchanged.

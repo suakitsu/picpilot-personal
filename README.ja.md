@@ -94,6 +94,15 @@ docker compose logs --tail=100 api
 
 [設定と HTTPS](docs/configuration.md) · [バックアップ・復元・更新](docs/operations.md) · [テスト](docs/testing.md)
 
+## 謝辞
+
+キャンバス機能を提供してくださった以下のオープンソースプロジェクトに感謝します。個人版はライセンス、対応ソース、由来の記録を保持し、PicPilot のブランド、認証、タスク連携、個人保存機能を追加しています。
+
+- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio)：制作スタジオ。バージョン `3.1.3`、固定コミット `7768f3f8d7f47e04c6d18572837a086c7a533161`、AGPL-3.0。
+- [Infinite Canvas](https://github.com/basketikun/infinite-canvas)：自由キャンバス。固定コミット `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`、GNU AGPL v3。
+
+ライセンス、由来、変更内容は `third_party/nova-image-studio/UPSTREAM.md` と `third_party/infinite-canvas/PROVENANCE.txt` にあります。
+
 ## エディションとライセンス
 
 複数ユーザー運営、決済、管理者機能が必要な場合は、独立した `suakitsu/picpilot-platform-go` を使用してください。元の Java 版は変更せず、独立して維持します。
