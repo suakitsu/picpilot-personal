@@ -71,6 +71,14 @@ docker compose exec api /picpilot --setup-token
 
 没有 Docker 时可以直接启动 Go API 和个人版 Next.js 前端。下面的示例把个人数据、Go 编译缓存和 npm 缓存都放到 `E:\picpilot`；PostgreSQL 使用你准备好的独立数据库，不要连接生产库。
 
+首次克隆或上游画布源码更新后，先构建两个被忽略的静态画布目录：
+
+```powershell
+./scripts/build-canvas-direct.ps1
+```
+
+脚本只生成本机 `third_party/nova-image-studio/frontend/out` 和 `third_party/infinite-canvas/web/dist`，不写入 Git；后续只改 PicPilot Go/Next 代码时不用重复构建。
+
 ```powershell
 $env:DATABASE_URL = "postgres://picpilot:<password>@127.0.0.1:5432/picpilot?sslmode=disable"
 $env:PICPILOT_DATA_DIR = "E:\picpilot\runtime\personal-data"
