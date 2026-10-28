@@ -1,4 +1,4 @@
-# PicPilot Personal Go
+# PicPilot Personal
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
@@ -11,8 +11,8 @@
 Git、起動済みの Docker Engine / Docker Desktop、Docker Compose v2 が必要です。初回ビルドではイメージと依存パッケージをダウンロードします。4 CPU コア、空きメモリ 8 GB、空きディスク 10 GB 以上を推奨します。
 
 ```sh
-git clone https://github.com/suakitsu/picpilot-personal-go.git
-cd picpilot-personal-go
+git clone https://github.com/suakitsu/picpilot-personal.git
+cd picpilot-personal
 ```
 
 非公開期間中は自分の GitHub アクセス権が必要です。クローン URL にトークンを埋め込まないでください。
@@ -107,6 +107,6 @@ docker compose logs --tail=100 api
 
 ## エディションとライセンス
 
-複数ユーザー運営、決済、管理者機能が必要な場合は、独立した `suakitsu/picpilot-platform-go` を使用してください。元の Java 版は変更せず、独立して維持します。
+複数ユーザー運営、決済、管理者機能が必要な場合は、独立した `suakitsu/picpilot-platform` を使用してください。元の Java 版は変更せず、独立して維持します。
 
 [AGPL-3.0](LICENSE) を採用しています。両キャンバスの上流ライセンス表示と変更後の対応ソースを保持します。`third_party/*/UPSTREAM.md` を確認してください。所有者の承認までは非公開です。認証情報、画像、バックアップ、ユーザーデータを Git に登録しないでください。

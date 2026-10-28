@@ -1,8 +1,8 @@
-# PicPilot Personal Go
+# PicPilot Personal
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-自托管的 PicPilot 个人版。用户在自己的设置页配置图片、文本和视频 Provider，在工作台、创作工作台及自由画布中使用。业务后端为 Go，前端为 React/Next.js；不包含平台充值、积分售卖和管理员站点。
+面向创作者的自托管 PicPilot 个人 AI 创作工作台。用户在自己的设置页连接图片、文本和视频 Provider，使用参考图、创作工作台与自由画布完成灵感探索和视觉内容制作。业务后端为 Go，前端为 React/Next.js；不包含平台充值、积分售卖和管理员站点。
 
 **当前为私有迁移验收版本，尚未宣布正式可用。** 不要连接 Java 版生产数据库。个人版使用独立数据库结构，不会自动迁移原平台的用户或充值数据。
 
@@ -11,8 +11,8 @@
 需要 Git，以及 Docker Engine/Docker Compose v2，或本机 Go、Node.js 和 PostgreSQL。Docker 只是打包启动方式，不是运行前提。首次构建需要联网下载镜像及依赖。建议至少 4 核、8 GB 可用内存和 10 GB 可用磁盘。
 
 ```sh
-git clone https://github.com/suakitsu/picpilot-personal-go.git
-cd picpilot-personal-go
+git clone https://github.com/suakitsu/picpilot-personal.git
+cd picpilot-personal
 ```
 
 仓库私有期间需要自己的 GitHub 读取权限；不要把 Token 放进克隆地址。
@@ -144,6 +144,6 @@ docker compose logs --tail=100 api
 
 ## 版本与许可
 
-需要运营多用户平台、充值或管理员后台时，使用独立的 `suakitsu/picpilot-platform-go`。原 Java 平台保持独立，不被本次迁移修改。
+需要运营多用户平台、充值或管理员后台时，使用独立的 `suakitsu/picpilot-platform`。原 Java 平台保持独立，不被本次迁移修改。
 
 本项目采用 [AGPL-3.0](LICENSE)。两个画布保留上游许可和修改后的对应源码，见 `third_party/*/UPSTREAM.md`。当前仓库保持私有，公开发布需等待所有者确认。请勿向 Git 提交密钥、图片、备份或用户数据。

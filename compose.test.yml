@@ -1,4 +1,4 @@
-name: picpilot-personal-go-isolated-tests
+name: picpilot-personal-isolated-tests
 services:
   test-db:
     image: postgres:18-bookworm

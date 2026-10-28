@@ -1,8 +1,8 @@
-# PicPilot Personal Go
+# PicPilot Personal
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-Self-hosted PicPilot for personal use. Configure your own image, text and video providers in Settings, then use the workbench, creative studio and infinite canvas. Go handles the business backend; React/Next.js handles the frontend. There is no platform billing, credit storefront or administrator website.
+Self-hosted, creator-first PicPilot for image-making and visual content work. Connect your own image, text and video providers in Settings, then explore ideas with reference images, the workbench, creative studio and infinite canvas. Go handles the business backend; React/Next.js handles the frontend. There is no platform billing, credit storefront or administrator website.
 
 **Private migration acceptance build, not yet declared production-ready.** Do not connect a Java production database. This edition has its own schema and does not automatically import platform users or payment records.
 
@@ -11,8 +11,8 @@ Self-hosted PicPilot for personal use. Configure your own image, text and video 
 Install Git, a running Docker Engine / Docker Desktop, and Docker Compose v2. The first build downloads container images and dependencies. Recommended available resources: 4 CPU cores, 8 GB RAM and 10 GB disk space.
 
 ```sh
-git clone https://github.com/suakitsu/picpilot-personal-go.git
-cd picpilot-personal-go
+git clone https://github.com/suakitsu/picpilot-personal.git
+cd picpilot-personal
 ```
 
 Private repository access requires your own GitHub authorization. Never put a token in the clone URL.
@@ -118,6 +118,6 @@ License, provenance and modification notes are in
 
 ## Editions and License
 
-For multi-user operations, payments and administration, use the separate `suakitsu/picpilot-platform-go` repository. The original Java platform remains independent and unchanged.
+For multi-user operations, payments and administration, use the separate `suakitsu/picpilot-platform` repository. The original Java platform remains independent and unchanged.
 
 Licensed under [AGPL-3.0](LICENSE). Both canvases retain upstream notices and modified corresponding source; see `third_party/*/UPSTREAM.md`. This repository remains private until its owner approves publication. Never commit credentials, images, backups or user data.
