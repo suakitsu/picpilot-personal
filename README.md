@@ -8,7 +8,7 @@
 
 ## 快速启动
 
-需要 Git、运行中的 Docker Engine / Docker Desktop 和 Docker Compose v2。首次构建需要联网下载镜像及依赖。建议至少 4 核、8 GB 可用内存和 10 GB 可用磁盘。
+需要 Git，以及 Docker Engine/Docker Compose v2，或本机 Go、Node.js 和 PostgreSQL。Docker 只是打包启动方式，不是运行前提。首次构建需要联网下载镜像及依赖。建议至少 4 核、8 GB 可用内存和 10 GB 可用磁盘。
 
 ```sh
 git clone https://github.com/suakitsu/picpilot-personal-go.git
@@ -67,10 +67,36 @@ docker compose exec api /picpilot --setup-token
 
 ![个人版模型配置](docs/screenshots/personal-providers-desktop.png)
 
+### 不使用 Docker：Go 直启验收
+
+没有 Docker 时可以直接启动 Go API 和个人版 Next.js 前端。下面的示例把个人数据、Go 编译缓存和 npm 缓存都放到 `E:\picpilot`；PostgreSQL 使用你准备好的独立数据库，不要连接生产库。
+
+```powershell
+$env:DATABASE_URL = "postgres://picpilot:<password>@127.0.0.1:5432/picpilot?sslmode=disable"
+$env:PICPILOT_DATA_DIR = "E:\picpilot\runtime\personal-data"
+$env:PICPILOT_LISTEN = "127.0.0.1:18092"
+$env:PICPILOT_PUBLIC_URL = "http://localhost:18093"
+$env:PICPILOT_ALLOWED_ORIGINS = "http://localhost:18093"
+$env:PICPILOT_DEMO_MODE = "true"       # 仅本地 Mock 验收；真实部署必须改为 false
+$env:GOCACHE = "E:\picpilot\development-cache\go\build"
+$env:GOMODCACHE = "E:\picpilot\development-cache\go\modules"
+go run ./cmd/picpilot
+```
+
+另开一个 PowerShell 窗口启动前端：
+
+```powershell
+cd web\user
+$env:GO_API_INTERNAL_URL = "http://127.0.0.1:18092"
+npm run dev -- --hostname 127.0.0.1 --port 18093
+```
+
+打开 `http://localhost:18093` 完成初始化和登录。Go API 会自动执行迁移。`PICPILOT_DEMO_MODE=true` 只允许 Mock 图片/文案验收，不会调用付费模型；正式部署时使用独立数据库、HTTPS 和 `PICPILOT_DEMO_MODE=false`。
+
 启动排查：
 
 - `POSTGRES_PASSWORD` 缺失：先运行 `init.ps1`/`init.sh`，不要把真实密钥写进 `.env.example`。
-- Docker Engine 不可用：启动 Docker Desktop，确认 `docker info` 返回 Server 信息。
+- Docker Engine 不可用：可改用上面的 Go 直启路径；若使用 Docker，再启动 Docker Desktop 并确认 `docker info` 返回 Server 信息。
 - 端口冲突：在 `.env` 修改 `PICPILOT_HTTP_PORT` 和 `PICPILOT_PUBLIC_URL`，保持两者一致。
 - 页面打不开：查看 `docker compose ps` 和 `docker compose logs --tail=100 api gateway`，不要先删卷。
 - 日常停机用 `docker compose stop`，恢复用 `docker compose start`；`down -v` 会删除数据库和应用数据。
