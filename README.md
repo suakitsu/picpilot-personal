@@ -86,6 +86,7 @@ $env:PICPILOT_LISTEN = "127.0.0.1:18092"
 $env:PICPILOT_PUBLIC_URL = "http://localhost:18093"
 $env:PICPILOT_ALLOWED_ORIGINS = "http://localhost:18093"
 $env:PICPILOT_DEMO_MODE = "true"       # 仅本地 Mock 验收；真实部署必须改为 false
+# $env:PICPILOT_ALLOW_PRIVATE_PROVIDERS = "true"  # 仅当本机网络把公网 DNS 映射到 198.18/15 时临时开启
 $env:GOCACHE = "E:\picpilot\development-cache\go\build"
 $env:GOMODCACHE = "E:\picpilot\development-cache\go\modules"
 go run ./cmd/picpilot
