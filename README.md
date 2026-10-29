@@ -4,7 +4,7 @@
 
 面向创作者的自托管 PicPilot 个人 AI 创作工作台。用户在自己的设置页连接图片、文本和视频 Provider，使用参考图、创作工作台与自由画布完成灵感探索和视觉内容制作。业务后端为 Go，前端为 React/Next.js；不包含平台充值、积分售卖和管理员站点。
 
-**当前为私有迁移验收版本，尚未宣布正式可用。** 不要连接 Java 版生产数据库。个人版使用独立数据库结构，不会自动迁移原平台的用户或充值数据。
+**当前为已公开的迁移验收版本，尚未宣布正式可用。** 不要连接 Java 版生产数据库。个人版使用独立数据库结构，不会自动迁移原平台的用户或充值数据。
 
 ## 快速启动
 
@@ -15,7 +15,7 @@ git clone https://github.com/suakitsu/picpilot-personal.git
 cd picpilot-personal
 ```
 
-仓库私有期间需要自己的 GitHub 读取权限；不要把 Token 放进克隆地址。
+仓库已公开，克隆无需 GitHub 令牌。
 
 Windows PowerShell：
 
@@ -152,4 +152,4 @@ docker compose logs --tail=100 api
 
 需要运营多用户平台、充值或管理员后台时，使用独立的 `suakitsu/picpilot-platform`。原 Java 平台保持独立，不被本次迁移修改。
 
-本项目采用 [AGPL-3.0](LICENSE)。两个画布保留上游许可和修改后的对应源码，见 `third_party/*/UPSTREAM.md`。当前仓库保持私有，公开发布需等待所有者确认。请勿向 Git 提交密钥、图片、备份或用户数据。
+PicPilot 自有原创代码采用 [MIT](LICENSE) 许可。内置第三方画布及 `core/nova/defaults/` 中的 Nova 默认数据保留 AGPL-3.0；包含这些内容的组合应用仍按 AGPL-3.0 发布，不能视为纯 MIT 项目。许可范围、第三方清单及对应源码义务见 [许可说明](LICENSING.md)。
