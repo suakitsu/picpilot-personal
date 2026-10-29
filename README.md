@@ -67,6 +67,12 @@ docker compose exec api /picpilot --setup-token
 
 ![个人版模型配置](docs/screenshots/personal-providers-desktop.png)
 
+### 真实 Provider 实测展示（2026-10-30）
+
+在独立本机数据目录中由个人用户配置了 OpenAI Images 兼容的 Sualoom Provider（`gpt-image-2`），通过个人版自由创作实际生成一张 1K 方形的成年女性 Lolita 时装摄影图。下面的截图来自真实成功任务的成品详情页，和上面的 Mock 验收图分开；这不是默认测试步骤，上游服务可能按其规则计费。
+
+![个人版 Sualoom gpt-image-2 真实 Lolita 成品](docs/screenshots/personal-sualoom-real-lolita.jpg)
+
 ### 不使用 Docker：Go 直启验收
 
 没有 Docker 时可以直接启动 Go API 和个人版 Next.js 前端。下面的示例把个人数据、Go 编译缓存和 npm 缓存都放到 `E:\picpilot`；PostgreSQL 使用你准备好的独立数据库，不要连接生产库。

@@ -67,6 +67,12 @@ Mock 画像/テキストタスク、冪等性、署名メディア、ログア�
 
 ![個人版 Provider 設定](docs/screenshots/personal-providers-desktop.png)
 
+### 実 Provider の表示例（2026-10-30）
+
+隔離したローカルデータディレクトリで個人ユーザーが OpenAI Images 互換の Sualoom Provider（`gpt-image-2`）を設定し、個人版の自由創作から 1K 正方形の成人 Lolita ファッション写真を実際に生成しました。下の画像は成功した成品詳細ページの実画面で、上の Mock 検証画像とは分けています。既定のテスト手順ではなく、上流サービスの規約により料金が発生する場合があります。
+
+![個人版 Sualoom gpt-image-2 実 Lolita 結果](docs/screenshots/personal-sualoom-real-lolita.jpg)
+
 トラブルシューティング：
 
 - `POSTGRES_PASSWORD` がない場合は `init.ps1`/`init.sh` を実行します。本物の認証情報を `.env.example` に書かないでください。

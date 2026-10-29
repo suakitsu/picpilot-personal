@@ -70,6 +70,12 @@ The following are previously captured 1440px desktop browser pages, not mobile v
 
 ![Personal provider settings](docs/screenshots/personal-providers-desktop.png)
 
+### Live provider showcase (2026-10-30)
+
+In an isolated local data directory, the personal user configured the OpenAI Images-compatible Sualoom provider (`gpt-image-2`) and used it to generate a real 1K square adult Lolita fashion portrait. The screenshot below is the successful product-detail page from that request and is separate from the Mock acceptance screenshots above. This is not part of the default test path; the upstream service may charge according to its own policy.
+
+![Personal Sualoom gpt-image-2 live Lolita result](docs/screenshots/personal-sualoom-real-lolita.jpg)
+
 Troubleshooting:
 
 - Missing `POSTGRES_PASSWORD`: run `init.ps1`/`init.sh`; never put real credentials in `.env.example`.
