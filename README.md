@@ -92,7 +92,7 @@ $env:PICPILOT_LISTEN = "127.0.0.1:18092"
 $env:PICPILOT_PUBLIC_URL = "http://localhost:18093"
 $env:PICPILOT_ALLOWED_ORIGINS = "http://localhost:18093"
 $env:PICPILOT_DEMO_MODE = "true"       # 仅本地 Mock 验收；真实部署必须改为 false
-# $env:PICPILOT_ALLOW_PRIVATE_PROVIDERS = "true"  # 仅当本机网络把公网 DNS 映射到 198.18/15 时临时开启
+# Provider Base URL 同时支持 http:// 和 https://；探测/实际请求是否可达由上游网络决定
 $env:GOCACHE = "E:\picpilot\development-cache\go\build"
 $env:GOMODCACHE = "E:\picpilot\development-cache\go\modules"
 go run ./cmd/picpilot
@@ -122,7 +122,7 @@ npm run dev -- --hostname 127.0.0.1 --port 18093
 
 图片支持配置的 OpenAI 图片及 Gemini 适配器，文本支持 OpenAI Chat Completions / Responses，视频支持配置的 APIMart、HFSY、Agnes 适配器。必须选择与上游真实接口兼容的协议；任意厂商接口不能仅靠改名字通用。
 
-本地 `PICPILOT_PUBLIC_URL` 默认是 localhost，因此 `http://127.0.0.1:8888/v1` 这类可信本机网关会自动放行。若模型网关运行在 Docker 宿主机上，容器里的 `127.0.0.1` 指的是容器本身，Docker Desktop 可使用 `host.docker.internal`。公开部署请在 `.env` 设置 `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false`，不要向公网暴露无认证的本机网关。其他部署方式见 [配置说明](docs/configuration.md)。
+已配置的 Provider Base URL 同时支持 HTTP 和 HTTPS，`http://127.0.0.1:8888/v1` 这类本机网关也可以直接配置。若模型网关运行在 Docker 宿主机上，容器里的 `127.0.0.1` 指的是容器本身，Docker Desktop 可使用 `host.docker.internal`。不要向公网暴露无认证的本机网关。其他部署方式见 [配置说明](docs/configuration.md)。
 
 ## 数据与维护
 
