@@ -85,7 +85,7 @@ Mock 画像/テキストタスク、冪等性、署名メディア、ログア�
 
 画像は OpenAI 画像 API と Gemini、テキストは OpenAI Chat Completions / Responses、動画は APIMart・HFSY・Agnes の設定済みアダプターに対応します。実際の API と互換性のあるプロトコルを選択してください。サービス名を変更するだけでは互換性は得られません。
 
-コンテナ内の `127.0.0.1` はホスト PC ではなく、そのコンテナを指します。Docker Desktop では `host.docker.internal` を使用できます。必要な場合だけ `PICPILOT_ALLOW_PRIVATE_PROVIDERS=true` を指定してください。認証のないローカルゲートウェイを公開しないでください。詳細は [設定](docs/configuration.md) を参照してください。
+既定の localhost `PICPILOT_PUBLIC_URL` では、`http://127.0.0.1:8888/v1` のような信頼したローカルゲートウェイを自動的に許可します。コンテナ内の `127.0.0.1` はホスト PC ではなくそのコンテナを指すため、Docker Desktop では `host.docker.internal` を使用してください。公開環境では `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false` を設定し、認証のないローカルゲートウェイを公開しないでください。詳細は [設定](docs/configuration.md) を参照してください。
 
 ## データ管理
 

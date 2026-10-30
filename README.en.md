@@ -91,7 +91,7 @@ Troubleshooting:
 
 Configured adapters cover OpenAI images and Gemini images; OpenAI Chat Completions / Responses for text; APIMart, HFSY and Agnes for video. Choose a protocol compatible with your actual upstream API. A provider's name alone does not establish compatibility.
 
-Inside a container, `127.0.0.1` refers to that container, not your computer. Docker Desktop can reach a host gateway using `host.docker.internal`. Opt into `PICPILOT_ALLOW_PRIVATE_PROVIDERS=true` only when needed. Never expose an unauthenticated local gateway publicly. See [configuration](docs/configuration.md).
+With the default localhost `PICPILOT_PUBLIC_URL`, trusted local gateways such as `http://127.0.0.1:8888/v1` are enabled automatically. Inside a container, `127.0.0.1` refers to that container, not your computer; Docker Desktop can reach a host gateway using `host.docker.internal`. Set `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false` for a public deployment and never expose an unauthenticated local gateway. See [configuration](docs/configuration.md).
 
 ## Data and Operations
 

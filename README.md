@@ -122,7 +122,7 @@ npm run dev -- --hostname 127.0.0.1 --port 18093
 
 图片支持配置的 OpenAI 图片及 Gemini 适配器，文本支持 OpenAI Chat Completions / Responses，视频支持配置的 APIMart、HFSY、Agnes 适配器。必须选择与上游真实接口兼容的协议；任意厂商接口不能仅靠改名字通用。
 
-若模型网关运行在 Docker 宿主机上，容器里的 `127.0.0.1` 指的是容器本身。Docker Desktop 可使用 `host.docker.internal`，并在确有需要时设置 `PICPILOT_ALLOW_PRIVATE_PROVIDERS=true`。不要向公网暴露无认证的本机网关。其他部署方式见 [配置说明](docs/configuration.md)。
+本地 `PICPILOT_PUBLIC_URL` 默认是 localhost，因此 `http://127.0.0.1:8888/v1` 这类可信本机网关会自动放行。若模型网关运行在 Docker 宿主机上，容器里的 `127.0.0.1` 指的是容器本身，Docker Desktop 可使用 `host.docker.internal`。公开部署请在 `.env` 设置 `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false`，不要向公网暴露无认证的本机网关。其他部署方式见 [配置说明](docs/configuration.md)。
 
 ## 数据与维护
 
