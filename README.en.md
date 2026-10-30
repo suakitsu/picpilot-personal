@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-Self-hosted, creator-first PicPilot for image-making and visual content work. Connect your own image, text and video providers in Settings, then explore ideas with reference images, the workbench, creative studio and infinite canvas. Go handles the business backend; React/Next.js handles the frontend. There is no platform billing, credit storefront or administrator website.
+Self-hosted, creator-first PicPilot for image generation, video generation, e-commerce creation, reference-image workflows and infinite canvas. Connect your own image, text and video providers in Settings, then explore ideas in the workbench and creative studio. Go handles the business backend; React/Next.js handles the frontend. There is no platform billing, credit storefront or administrator website.
 
 **Public migration acceptance build, not yet declared production-ready.** Do not connect a Java production database. This edition has its own schema and does not automatically import platform users or payment records.
 
